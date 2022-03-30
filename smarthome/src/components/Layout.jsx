@@ -15,7 +15,6 @@ const Layout = () => {
           <Router />
           {/* <Shop /> */}
         </div>
-        <Footer />
       </div>
     </BrowserRouter>
   );
