@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,500&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  text-transform: capitalize;
+  text-decoration: none;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.app {
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1200px;
+  border: 1px solid black;
+  height: 90vh;
+}
+.container {
+  height: 100%;
+  align-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #192225;
+  height: 5rem;
+  padding: 0 5%;
+}
+
+.header .logo a {
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 19px;
+  text-transform: uppercase;
+  /* identical to box height */
+
+  color: #26a0aa;
+}
+
+.header .navbar {
+  height: 100%;
+}
+
+.header .navbar a {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 5rem;
+  text-transform: uppercase;
+  /* identical to box height */
+  display: inline-block;
+  height: 100%;
+
+  color: #26a0aa;
+}
+
+.header .navbar a:hover {
+  background-color: #26a0aa;
+  color: #192225;
+}
+
+.navbar-item {
+  padding: 0 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 1200px) {
+  .app {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 55%;
+  }
+}
