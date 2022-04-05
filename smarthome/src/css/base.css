@@ -71,21 +71,59 @@ html {
   color: #26a0aa;
 }
 
-.header .navbar a:hover {
+.header .navbar a:hover,
+.drop-down span:hover {
   background-color: #26a0aa;
   color: #192225;
 }
 
 .navbar-item {
   padding: 0 1rem;
+  position: relative;
 }
+
+.drop-down {
+  display: none;
+  border-radius: 5px;
+  background: #192225;
+  color: #26a0aa;
+  width: 20rem;
+  overflow: hidden;
+}
+
+.drop-down .drop-item {
+  display: block;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.btn-down {
+  font-size: 2rem;
+  vertical-align: sub;
+  line-height: 5rem;
+  margin: auto;
+}
+
+.navbar-item.has-dropdown:hover .drop-down {
+  display: block;
+  position: absolute;
+  top: 101%;
+  right: 0;
+  z-index: 2;
+}
+
+/* .btn-down:hover + .drop-down {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+} */
 
 .body {
   display: block;
   margin: auto;
   width: 100%;
-  height: 95vh;
-  padding-bottom: 8rem;
+  min-height: 95vh;
 }
 
 .body::before {
@@ -96,7 +134,8 @@ html {
   left: 0;
   background-image: url("../assets/images/bg.jpg");
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  padding-bottom: 2rem;
   opacity: 0.15;
   z-index: -1;
 }
@@ -344,6 +383,117 @@ html {
   color: #ffffff;
 }
 
+.room-name {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 3rem;
+  padding: 2rem 0;
+  color: #000000;
+}
+
+.room-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10rem;
+}
+
+.room-status .status {
+  flex: 1 1 35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  background: #f4f9f3;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 2rem 0;
+  color: #000000;
+}
+
+.room-status .status div {
+  text-align: center;
+}
+
+.room-status .status .status-name {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.6rem;
+  padding: 1rem 0;
+  line-height: 2rem;
+}
+
+.room-status .status .status-digit {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 8rem;
+
+  background: #f4f9f3;
+  /* mix-blend-mode: overlay; */
+  opacity: 0.8;
+  width: 15rem;
+  height: 8rem;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.device-category {
+  background: #f4f9f3;
+  opacity: 0.8;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin: 2rem 0;
+  padding: 2rem 3.5rem;
+}
+.device-category .container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.device-category h1 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2rem;
+  padding: 0 0 3rem;
+  line-height: 2rem;
+}
+
+.device-category .container .box {
+  background: #f4f9f3;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  flex: 1 1 25rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.device-category .container .box .light-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+  justify-content: space-between;
+}
+
+.device-category .container .box .light-switch .light-name {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  flex: 1 1 4rem;
+}
+
+.room {
+  padding: 0 5%;
+}
+
 @media screen and (max-width: 1200px) {
 }
 
@@ -357,4 +507,66 @@ html {
   html {
     font-size: 55%;
   }
+}
+
+/* card  */
+
+.card {
+  background: #f4f9f3;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex: 0.3 1 20rem;
+  gap: 2.5rem;
+  padding: 1.5rem 0;
+}
+
+.card .card-img {
+  flex: 0.4 1 5rem;
+}
+
+.card .card-img img {
+  width: 70%;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+}
+
+.card .card-switch {
+  flex: 0.7 1 6rem;
+}
+
+.card .card-switch h3 {
+  /* Light 1 */
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 3rem;
+  /* identical to box height */
+}
+
+.card .card-switch .power-text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 3rem;
+}
+
+.switch-btn {
+  /* border: 1px solid black; */
+  display: inline-block;
+}
+.light-icon {
+  display: block;
+  margin: auto;
+  font-size: 8rem;
+}
+
+.light-icon.active {
+  color: #3ace21;
+  display: block;
+  margin: auto;
+  font-size: 8rem;
 }
