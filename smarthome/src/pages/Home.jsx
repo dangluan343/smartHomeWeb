@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -20,7 +21,9 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <p className="room-name">Living Room</p>
+              <Link to="livingroom">
+                <p className="room-name">Living Room</p>
+              </Link>
               <p className="room-device-quan">4 devices</p>
             </div>
             <div className="room">
@@ -36,7 +39,9 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <p className="room-name">BedRoom</p>
+              <Link to="bedroom">
+                <p className="room-name">BedRoom</p>
+              </Link>
               <p className="room-device-quan">4 devices</p>
             </div>
             <div className="room">
@@ -52,7 +57,9 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <p className="room-name">kitchen</p>
+              <Link to="kitchen">
+                <p className="room-name">kitchen</p>
+              </Link>
               <p className="room-device-quan">4 devices</p>
             </div>
             <div className="room">
@@ -68,7 +75,9 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <p className="room-name">bedroom</p>
+              <Link to="bathroom">
+                <p className="room-name">bathroom</p>
+              </Link>
               <p className="room-device-quan">4 devices</p>
             </div>
           </div>
