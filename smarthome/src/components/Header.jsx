@@ -10,33 +10,83 @@ const Header = () => {
         </a>
       </div>
       <div className="navbar">
-        <a href="/" className="navbar-item">
-          <Link to="/">Home</Link>
-        </a>
-        <a href="/" className="navbar-item has-dropdown">
+        <span className="navbar-item">
+          <Link
+            to="/"
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              textTransform: "inherit",
+            }}
+          >
+            home
+          </Link>
+        </span>
+        <span className="navbar-item has-dropdown">
           Room
           <AiFillCaretDown className="btn-down" />
           <span className="drop-down">
-            <Link to="livingroom" className="drop-item">
-              <span>LivingRoom</span>
+            <Link
+              style={{
+                color: "inherit",
+                textDecoration: "inherit",
+                textTransform: "inherit",
+              }}
+              to="livingroom"
+              className="drop-item"
+            >
+              LivingRoom
             </Link>
 
-            <Link to="kitchen" className="drop-item">
-              <span>kitchen</span>
+            <Link
+              style={{
+                color: "inherit",
+                textDecoration: "inherit",
+                textTransform: "inherit",
+              }}
+              to="kitchen"
+              className="drop-item"
+            >
+              kitchen
             </Link>
 
-            <Link to="bedroom" className="drop-item">
-              <span>bedroom</span>
+            <Link
+              style={{
+                color: "inherit",
+                textDecoration: "inherit",
+                textTransform: "inherit",
+              }}
+              to="bedroom"
+              className="drop-item"
+            >
+              bedroom
             </Link>
 
-            <Link to="bathroom" className="drop-item">
-              <span>bathroom</span>
+            <Link
+              style={{
+                color: "inherit",
+                textDecoration: "inherit",
+                textTransform: "inherit",
+              }}
+              to="bathroom"
+              className="drop-item"
+            >
+              bathroom
             </Link>
           </span>
-        </a>
-        <a href="/" className="navbar-item">
-          <Link to="dashboard">Dashboard</Link>
-        </a>
+        </span>
+        <span className="navbar-item">
+          <Link
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              textTransform: "inherit",
+            }}
+            to="dashboard"
+          >
+            Dashboard
+          </Link>
+        </span>
       </div>
     </div>
   );
