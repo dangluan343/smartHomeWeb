@@ -3,11 +3,11 @@ import Card from "../components/Card.js";
 function Status(props) {
   return (
     <div>
-      <div class="room-name">{props.name}</div>
-      <div class="room-status">
-        <div class="status">
+      <div className="room-name">{props.name}</div>
+      <div className="room-status">
+        <div className="status">
           <div>
-            <p class="status-name">TEMPERATURE</p>
+            <p className="status-name">TEMPERATURE</p>
             <svg
               width="35"
               height="35"
@@ -21,12 +21,12 @@ function Status(props) {
               />
             </svg>
           </div>
-          <div class="status-digit">{props.temp}C</div>
+          <div className="status-digit">{props.temp}C</div>
         </div>
 
-        <div class="status">
+        <div className="status">
           <div>
-            <p class="status-name">HUMIDITY</p>
+            <p className="status-name">HUMIDITY</p>
             <svg
               width="30"
               height="36"
@@ -40,7 +40,7 @@ function Status(props) {
               />
             </svg>
           </div>
-          <div class="status-digit">{props.humi}%</div>
+          <div className="status-digit">{props.humi}%</div>
         </div>
       </div>
     </div>
@@ -51,27 +51,27 @@ function Livingroom() {
   return (
     <div className="room body livingroom">
       <Status name="Living Room" temp="37" humi="20" />
-      <div class="device-category">
+      <div className="device-category">
         <h1>Light</h1>
-        <div class="container">
+        <div className="container">
           <Card light="true" fan="false" door="false" deviceName="light1" />
           <Card light="true" fan="false" door="false" deviceName="light2" />
           <Card light="true" fan="false" door="false" deviceName="light3" />
         </div>
       </div>
 
-      <div class="device-category">
+      <div className="device-category">
         <h1>Door</h1>
-        <div class="container">
+        <div className="container">
           <Card light="false" fan="false" door="true" deviceName="door1" />
           <Card light="false" fan="false" door="true" deviceName="door2" />
           <Card light="false" fan="false" door="true" deviceName="door3" />
         </div>
       </div>
 
-      <div class="device-category">
+      <div className="device-category">
         <h1>Fan</h1>
-        <div class="container">
+        <div className="container">
           <Card light="false" fan="true" door="false" deviceName="fan1" />
           <Card light="false" fan="true" door="false" deviceName="fan2" />
           <Card light="false" fan="true" door="false" deviceName="fan3" />
@@ -85,16 +85,16 @@ function Bathroom() {
   return (
     <div className="room body bathroom">
       <Status name="Bath Room" temp="27" humi="50" />
-      <div class="device-category">
+      <div className="device-category">
         <h1>Light</h1>
-        <div class="container">
+        <div className="container">
           <Card light="true" fan="false" door="false" deviceName="light3" />
         </div>
       </div>
 
-      <div class="device-category">
+      <div className="device-category">
         <h1>Door</h1>
-        <div class="container">
+        <div className="container">
           <Card light="false" fan="false" door="true" deviceName="door3" />
         </div>
       </div>
@@ -105,26 +105,26 @@ function Bedroom() {
   return (
     <div className="room body bedroom">
       <Status name="Bed Room" temp="30" humi="40" />
-      <div class="device-category">
+      <div className="device-category">
         <h1>Light</h1>
-        <div class="container">
+        <div className="container">
           <Card light="true" fan="false" door="false" deviceName="light1" />
           <Card light="true" fan="false" door="false" deviceName="light2" />
           <Card light="true" fan="false" door="false" deviceName="light3" />
         </div>
       </div>
 
-      <div class="device-category">
+      <div className="device-category">
         <h1>Door</h1>
-        <div class="container">
+        <div className="container">
           <Card light="false" fan="false" door="true" deviceName="door2" />
           <Card light="false" fan="false" door="true" deviceName="door3" />
         </div>
       </div>
 
-      <div class="device-category">
+      <div className="device-category">
         <h1>Fan</h1>
-        <div class="container">
+        <div className="container">
           <Card light="false" fan="true" door="false" deviceName="fan1" />
           <Card light="false" fan="true" door="false" deviceName="fan2" />
           <Card light="false" fan="true" door="false" deviceName="fan3" />
@@ -137,27 +137,27 @@ function Kitchen() {
   return (
     <div className="room body kitchen">
       <Status name="Kitchen" temp="35" humi="30" />
-      <div class="device-category">
+      <div className="device-category">
         <h1>Light</h1>
-        <div class="container">
+        <div className="container">
           <Card light="true" fan="false" door="false" deviceName="light1" />
           <Card light="true" fan="false" door="false" deviceName="light2" />
           <Card light="true" fan="false" door="false" deviceName="light3" />
         </div>
       </div>
 
-      <div class="device-category">
+      <div className="device-category">
         <h1>Door</h1>
-        <div class="container">
+        <div className="container">
           <Card light="false" fan="false" door="true" deviceName="door1" />
           <Card light="false" fan="false" door="true" deviceName="door2" />
           <Card light="false" fan="false" door="true" deviceName="door3" />
         </div>
       </div>
 
-      <div class="device-category">
+      <div className="device-category">
         <h1>Fan</h1>
-        <div class="container">
+        <div className="container">
           <Card light="false" fan="true" door="false" deviceName="fan1" />
           <Card light="false" fan="true" door="false" deviceName="fan2" />
           <Card light="false" fan="true" door="false" deviceName="fan3" />

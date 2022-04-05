@@ -59,7 +59,7 @@ html {
   height: 100%;
 }
 
-.header .navbar a {
+.header .navbar .navbar-item {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 5rem;
@@ -71,10 +71,10 @@ html {
   color: #26a0aa;
 }
 
-.header .navbar a:hover,
-.drop-down span:hover {
+.header .navbar .navbar-item:hover,
+.drop-down .drop-item:hover {
   background-color: #26a0aa;
-  color: #192225;
+  color: #192225 !important;
 }
 
 .navbar-item {

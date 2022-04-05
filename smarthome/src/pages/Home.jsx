@@ -21,7 +21,14 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <Link to="livingroom">
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  textTransform: "inherit",
+                }}
+                to="livingroom"
+              >
                 <p className="room-name">Living Room</p>
               </Link>
               <p className="room-device-quan">4 devices</p>
@@ -39,7 +46,14 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <Link to="bedroom">
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  textTransform: "inherit",
+                }}
+                to="bedroom"
+              >
                 <p className="room-name">BedRoom</p>
               </Link>
               <p className="room-device-quan">4 devices</p>
@@ -57,7 +71,14 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <Link to="kitchen">
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  textTransform: "inherit",
+                }}
+                to="kitchen"
+              >
                 <p className="room-name">kitchen</p>
               </Link>
               <p className="room-device-quan">4 devices</p>
@@ -75,7 +96,14 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <Link to="bathroom">
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  textTransform: "inherit",
+                }}
+                to="bathroom"
+              >
                 <p className="room-name">bathroom</p>
               </Link>
               <p className="room-device-quan">4 devices</p>
@@ -98,7 +126,16 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <p className="device-name">Door</p>
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  textTransform: "inherit",
+                }}
+                to="door"
+              >
+                <p className="device-name">Door</p>
+              </Link>
             </div>
             <div className="device">
               <svg
@@ -130,7 +167,16 @@ const Home = () => {
                   />
                 </defs>
               </svg>
-              <p className="device-name">light</p>
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  textTransform: "inherit",
+                }}
+                to="light"
+              >
+                <p className="device-name">light</p>
+              </Link>
             </div>
             <div className="device">
               <svg
@@ -145,7 +191,16 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <p className="device-name">temperature</p>
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  textTransform: "inherit",
+                }}
+                to="temperature"
+              >
+                <p className="device-name">temperature</p>
+              </Link>
             </div>
             <div className="device">
               <svg
@@ -160,7 +215,16 @@ const Home = () => {
                   fill="black"
                 />
               </svg>
-              <p className="device-name">humidity</p>
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  textTransform: "inherit",
+                }}
+                to="humidity"
+              >
+                <p className="device-name">humidity</p>
+              </Link>
             </div>
           </div>
         </div>
