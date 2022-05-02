@@ -2,24 +2,54 @@ import React from "react";
 import "../css/base.css";
 import Switch from "./Switch";
 import { useState, useEffect } from "react";
-import { FaLightbulb, FaDoorClosed, FaDoorOpen, FaFan } from "react-icons/fa";
-
+import { FaLightbulb, FaFan, FaDoorOpen, FaDoorClosed } from "react-icons/fa";
+import { FaAutoprefixer } from "react-icons/fa";
+import deviceApi from "../api/deviceApi";
 function Card(props) {
   const [imgStyle, setImgStyle] = useState("light-icon");
   const [door, setDoor] = useState(<FaDoorClosed className="light-icon" />);
   const [fanStyle, setFanStyle] = useState("light-icon");
+  const [automatic, setAutomatic] = useState("light-icon");
   const [icon, setIcon] = useState();
   const [on, setOn] = useState("off");
 
   useEffect(() => {
-    if (props.light === "true") {
+    if (props.light === "true" && props.isActive) {
+      setImgStyle("light-icon active");
       setIcon(<FaLightbulb className={imgStyle} />);
-    } else if (props.door === "true") {
+      setOn("on");
+    } else if (props.door === "true" && props.isActive) {
+      setDoor(<FaDoorOpen className="light-icon active" />);
       setIcon(door);
-    } else if (props.fan === "true") {
+      setOn("on");
+    } else if (props.fan === "true" && props.isActive) {
+      setFanStyle("light-icon fanactive");
       setIcon(<FaFan className={fanStyle} />);
+      setOn("on");
+    } else if (props.auto === "true" && props.isActive) {
+      setAutomatic("light-icon active");
+      setIcon(<FaAutoprefixer className={automatic} />);
+      setOn("on");
     }
-  }, [imgStyle, door, fanStyle]);
+
+    if (props.light === "true" && !props.isActive) {
+      setImgStyle("light-icon");
+      setIcon(<FaLightbulb className={imgStyle} />);
+      setOn("off");
+    } else if (props.door === "true" && !props.isActive) {
+      setDoor(<FaDoorOpen className="light-icon" />);
+      setIcon(door);
+      setOn("off");
+    } else if (props.fan === "true" && !props.isActive) {
+      setFanStyle("light-icon");
+      setIcon(<FaFan className={fanStyle} />);
+      setOn("off");
+    } else if (props.auto === "true" && !props.isActive) {
+      setAutomatic("light-icon");
+      setIcon(<FaAutoprefixer className={automatic} />);
+      setOn("off");
+    }
+  }, [imgStyle, door, fanStyle, automatic, props.isActive]);
 
   const turnOn = () => {
     if (on === "off") {
@@ -29,9 +59,18 @@ function Card(props) {
         setDoor(<FaDoorOpen className="light-icon active" />);
         setIcon(door);
       } else if (props.fan === "true") {
-        setFanStyle("light-icon active");
+        setFanStyle("light-icon fanactive");
+      } else if (props.auto === "true") {
+        setAutomatic("light-icon active");
       }
       setOn("on");
+      const toggleStatus = async () => {
+        console.log(props.keyFeed, typeof props.keyFeed);
+        const temp = await deviceApi.turnOn(props.keyFeed, props.onValue);
+        console.log(temp);
+      };
+
+      toggleStatus();
     } else {
       if (props.light === "true") {
         setImgStyle("light-icon");
@@ -40,8 +79,17 @@ function Card(props) {
         setIcon(door);
       } else if (props.fan === "true") {
         setFanStyle("light-icon");
+      } else if (props.auto === "true") {
+        setAutomatic("light-icon");
       }
       setOn("off");
+
+      const toggleStatus = async () => {
+        const temp = await deviceApi.turnOff(props.keyFeed, props.offValue);
+        console.log(temp);
+      };
+
+      toggleStatus();
     }
   };
   return (
@@ -51,11 +99,12 @@ function Card(props) {
         <h3>{props.deviceName}</h3>
         <p className="power-text">Power</p>
         <div className="switch-btn" onClick={() => turnOn()}>
-          <Switch />
+          {props.door === "false" && <Switch />}
         </div>
       </div>
     </div>
   );
 }
-
+// const [color, setColor] = useState("black");
+//
 export default Card;

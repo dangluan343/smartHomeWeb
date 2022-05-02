@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../components/Card.js";
+import { RiCelsiusFill } from "react-icons/ri";
+
+import { CgSmartHomeLight } from "react-icons/cg";
+import deviceApi from "../api/deviceApi.js";
 function Status(props) {
   return (
     <div>
@@ -21,7 +25,16 @@ function Status(props) {
               />
             </svg>
           </div>
-          <div className="status-digit">{props.temp}C</div>
+          <div className="status-digit">
+            {props.temp}
+            <RiCelsiusFill
+              style={{
+                verticalAlign: "middle",
+                fontSize: "2.2rem",
+                marginTop: "-.3rem",
+              }}
+            />
+          </div>
         </div>
 
         <div className="status">
@@ -42,39 +55,167 @@ function Status(props) {
           </div>
           <div className="status-digit">{props.humi}%</div>
         </div>
+
+        <div className="status">
+          <div>
+            <p className="status-name">Light Level</p>
+            <CgSmartHomeLight
+              style={{
+                fontSize: "5rem",
+                fontWeight: "bold",
+              }}
+            />
+          </div>
+          <div className="status-digit">{props.lightLevel}</div>
+        </div>
       </div>
     </div>
   );
 }
 
 function Livingroom() {
+  const [deviceList, setDeviceList] = useState([]);
+  // const [currentHumi, setCurrentHumi] = useState("")
+  // const [currentTemp, setCurrentTemp] = useState("")
+  // const [currentLightLevel, setCurrentLightLevel] = useState("")
+  const [data, setData] = useState({
+    temp: 0,
+    humi: 0,
+    light: 0,
+    led: 0,
+    door: 0,
+    fan: 0,
+    ledAuto: 0,
+    fanAuto: 0,
+    doorAuto: 0,
+  });
+
+  const fetchData = async () => {
+    const devices = await deviceApi.getAllFeed();
+
+    const recentValueTemp = await deviceApi.getLastValueFeed("temperature");
+
+    const recentValueHumi = await deviceApi.getLastValueFeed("humidity");
+
+    const recentValueLightLevel = await deviceApi.getLastValueFeed(
+      "light-intensity"
+    );
+
+    const led = await deviceApi.getLastValueFeed("led");
+    const door = await deviceApi.getLastValueFeed("magnetic-switch");
+    const fan = await deviceApi.getLastValueFeed("fan");
+
+    const ledAuto = await deviceApi.getLastValueFeed("led-automation");
+    const doorAuto = await deviceApi.getLastValueFeed("buzzer-automation");
+    const fanAuto = await deviceApi.getLastValueFeed("fan-automation");
+
+    setData({
+      temp: parseInt(recentValueTemp),
+      humi: Math.round((parseInt(recentValueHumi) / 1023) * 100),
+      light: parseInt(recentValueLightLevel),
+      led: led.search("LED0") !== -1 ? 0 : 1,
+      door: parseInt(door),
+      fan: fan.search("FAN0") !== -1 ? 0 : 1,
+      ledAuto: ledAuto.search("LEDAUTO0") !== -1 ? 0 : 1,
+      doorAuto: doorAuto.search("BUZAUTO0") !== -1 ? 0 : 1,
+      fanAuto: fanAuto.search("FANAUTO0") !== -1 ? 0 : 1,
+    });
+  };
+
+  useEffect(() => {
+    try {
+      const setTime = setInterval(fetchData, 1000 * 7);
+    } catch (error) {
+      console.log({ err: error.message });
+    }
+  }, []);
   return (
     <div className="room body livingroom">
-      <Status name="Living Room" temp="37" humi="20" />
+      <Status
+        name="Living Room"
+        temp={data.temp}
+        humi={data.humi}
+        lightLevel={data.light}
+      />
       <div className="device-category">
         <h1>Light</h1>
         <div className="container">
-          <Card light="true" fan="false" door="false" deviceName="light1" />
-          <Card light="true" fan="false" door="false" deviceName="light2" />
-          <Card light="true" fan="false" door="false" deviceName="light3" />
+          <Card
+            light="false"
+            fan="false"
+            door="false"
+            auto="true"
+            keyFeed="led-automation"
+            onValue="LEDAUTO1"
+            offValue="LEDAUTO0"
+            isActive={data.ledAuto === 1 ? true : false}
+            deviceName="LedAutomation"
+          />
+          <Card
+            light="true"
+            fan="false"
+            door="false"
+            auto="false"
+            keyFeed="led"
+            onValue="LED1"
+            offValue="LED0"
+            isActive={data.led === 1 ? true : false}
+            deviceName="light1"
+          />
         </div>
       </div>
 
       <div className="device-category">
         <h1>Door</h1>
         <div className="container">
-          <Card light="false" fan="false" door="true" deviceName="door1" />
-          <Card light="false" fan="false" door="true" deviceName="door2" />
-          <Card light="false" fan="false" door="true" deviceName="door3" />
+          <Card
+            light="false"
+            fan="false"
+            door="false"
+            auto="true"
+            keyFeed="buzzer-automation"
+            onValue="BUZAUTO1"
+            offValue="BUZAUTO0"
+            isActive={data.doorAuto === 1 ? true : false}
+            deviceName="SoundAutomation"
+          />
+
+          <Card
+            light="false"
+            fan="false"
+            door="true"
+            isActive={data.door === 1 ? true : false}
+            deviceName="Door"
+          />
         </div>
       </div>
 
       <div className="device-category">
         <h1>Fan</h1>
         <div className="container">
-          <Card light="false" fan="true" door="false" deviceName="fan1" />
-          <Card light="false" fan="true" door="false" deviceName="fan2" />
-          <Card light="false" fan="true" door="false" deviceName="fan3" />
+          <Card
+            light="false"
+            fan="false"
+            door="false"
+            auto="true"
+            keyFeed="fan-automation"
+            onValue="FANAUTO1"
+            offValue="FANAUTO0"
+            isActive={data.fanAuto === 1 ? true : false}
+            deviceName="FanAutomation"
+          />
+
+          <Card
+            light="false"
+            fan="true"
+            door="false"
+            auto="false"
+            keyFeed="fan"
+            onValue="FAN1"
+            offValue="FAN0"
+            isActive={data.fan === 1 ? true : false}
+            deviceName="fan"
+          />
         </div>
       </div>
     </div>
