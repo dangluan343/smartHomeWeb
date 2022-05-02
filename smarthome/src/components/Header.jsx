@@ -1,13 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillCaretDown } from "react-icons/ai";
-const Header = () => {
+import { RiLogoutCircleLine } from "react-icons/ri";
+function Header(props) {
+  const { user, setLoginUser } = props;
+  const [isLogin, setIsLogin] = useState("header notLogin");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLoginFunc = () => {
+      if (JSON.stringify(user) !== JSON.stringify({})) {
+        setIsLogin("header login");
+      }
+    };
+    isLoginFunc();
+  }, [user]);
+
+  const logout = () => {
+    navigate("/login");
+    setLoginUser({});
+    setIsLogin("header notLogin");
+  };
   return (
-    <div className="header">
+    <div className={isLogin}>
       <div className="logo">
-        <a href="/" className="logo-link">
+        <span className="logo-link" onClick={() => navigate("/")}>
           SMNGULINH
-        </a>
+        </span>
       </div>
       <div className="navbar">
         <span className="navbar-item">
@@ -75,6 +94,7 @@ const Header = () => {
             </Link>
           </span>
         </span>
+
         <span className="navbar-item">
           <Link
             style={{
@@ -87,9 +107,31 @@ const Header = () => {
             Dashboard
           </Link>
         </span>
+
+        <span className="navbar-item">
+          <Link
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              textTransform: "inherit",
+            }}
+            to="/login"
+          >
+            <RiLogoutCircleLine
+              style={{
+                color: "inherit",
+                textDecoration: "inherit",
+                textTransform: "inherit",
+                fontSize: "2rem",
+                verticalAlign: "sub",
+              }}
+              onClick={logout}
+            />
+          </Link>
+        </span>
       </div>
     </div>
   );
-};
+}
 
 export default Header;
